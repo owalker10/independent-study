@@ -19,12 +19,18 @@ class G_Obj(object):
         if self.__class__ == Actor:
             self.points[0]+=dx
             self.points[1]+=dy
+        if self.__class__ == Barrier:
+            self.ghost.move(dx,dy)
 
     def draw(self,win):
         self.shape.draw(win)
+        if self.__class__ == Barrier:
+            self.ghost.draw(win)
 
     def undraw(self):
         self.shape.undraw()
+        if self.__class__ == Barrier:
+            self.ghost.undraw()
 
 # player character class that implements G_Obj
 class Actor(G_Obj):
@@ -32,6 +38,7 @@ class Actor(G_Obj):
         shape = Circle(Point(x,y),r)
         shape.setFill(color)
         shape.setOutline(color)
+        shape = Image(Point(x,y),'Genetic Learning/jackolantern.png')
         G_Obj.__init__(self,x,y,shape)
         self.r = r
 
@@ -67,6 +74,8 @@ class Barrier(G_Obj):
         shape.setOutline(color)
         G_Obj.__init__(self,x,y,shape)
         self.width,self.height = width,height
+        if y == 0: self.ghost = Image(Point(x+width//2,height-50),'Genetic Learning/game_ghost_flipped.png')
+        else: self.ghost = Image(Point(x+width//2,y+50),'Genetic Learning/game_ghost.png')
 # class containing physical quantities for the game and methods to update these; DOES NOT MOVE OBJECTS
 class Physics(object):
     # all physical quantities are in pixels and frames (i.e. acceleration is pixels/frame^2)
