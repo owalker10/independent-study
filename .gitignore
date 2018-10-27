@@ -19,6 +19,7 @@ Genetic Learning/*
 !winequality-red.csv
 !frames_per_life.png
 !wine_regression_results.png
+!Genetic Learning/EL Clip.mp4
 
 nn_batch_test.py
 test_data.py

@@ -318,11 +318,12 @@ if __name__ == '__main__':
     y = np.array([0,1])
     print(nn.forward_propogation(x)[0])
 
+    costs = []
     for n in range(10000):
-        nn.backpropogation(x,y)
+        costs.append(nn.backpropogation(x,y))
     #print(nn.costs)
 
-    plt.plot([n for n in range(10000)],nn.costs)
+    plt.plot([n for n in range(10000)],costs)
     plt.yscale('log')
     plt.xscale('log')
     plt.show()

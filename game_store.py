@@ -1,6 +1,13 @@
 from graphics import *
 import numpy as np
 
+spooky = True # whether or not to use Halloween skins (this needs to be False for the RL version)
+
+# for turning off the skins
+def remove_skins():
+    global spooky
+    spooky = False
+
 # returns euclidian distance between two points
 def dist(xy1,xy2):
     return ((xy1[0]-xy2[0])**2 + (xy1[1]-xy2[1])**2)**0.5
@@ -19,17 +26,17 @@ class G_Obj(object):
         if self.__class__ == Actor:
             self.points[0]+=dx
             self.points[1]+=dy
-        if self.__class__ == Barrier:
+        if self.__class__ == Barrier and spooky:
             self.ghost.move(dx,dy)
 
     def draw(self,win):
         self.shape.draw(win)
-        if self.__class__ == Barrier:
+        if self.__class__ == Barrier and spooky:
             self.ghost.draw(win)
 
     def undraw(self):
         self.shape.undraw()
-        if self.__class__ == Barrier:
+        if self.__class__ == Barrier and spooky:
             self.ghost.undraw()
 
 # player character class that implements G_Obj
@@ -38,7 +45,7 @@ class Actor(G_Obj):
         shape = Circle(Point(x,y),r)
         shape.setFill(color)
         shape.setOutline(color)
-        shape = Image(Point(x,y),'Genetic Learning/jackolantern.png')
+        if spooky: shape = Image(Point(x,y),'Genetic Learning/jackolantern.png')
         G_Obj.__init__(self,x,y,shape)
         self.r = r
 
@@ -49,7 +56,7 @@ class Actor(G_Obj):
                 if dist((xx,yy),(x,y)) <= r:
                     xpoints.append(xx);ypoints.append(yy)
         self.points = [np.array(xpoints,np.int16),np.array(ypoints,np.int16)]
-                    
+
     # test if the actor object (circle) intersects other objects
     def intersects(self,other):
         # if the type is a rectangular barrier, check to see if any points on the barrier's perimeter is within the circle's radius
@@ -74,8 +81,8 @@ class Barrier(G_Obj):
         shape.setOutline(color)
         G_Obj.__init__(self,x,y,shape)
         self.width,self.height = width,height
-        if y == 0: self.ghost = Image(Point(x+width//2,height-50),'Genetic Learning/game_ghost_flipped.png')
-        else: self.ghost = Image(Point(x+width//2,y+50),'Genetic Learning/game_ghost.png')
+        if y == 0 and spooky: self.ghost = Image(Point(x+width//2,height-50),'Genetic Learning/game_ghost_flipped.png')
+        elif spooky: self.ghost = Image(Point(x+width//2,y+50),'Genetic Learning/game_ghost.png')
 # class containing physical quantities for the game and methods to update these; DOES NOT MOVE OBJECTS
 class Physics(object):
     # all physical quantities are in pixels and frames (i.e. acceleration is pixels/frame^2)
@@ -92,12 +99,3 @@ class Physics(object):
     # updates quantities per frame
     def tick(self):
         self.velocity_y += self.gravity
-
-    
-
-
-
-        
-    
-
-    

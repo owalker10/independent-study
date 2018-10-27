@@ -19,6 +19,8 @@ The player doesn't ever learn how to play particularly well, so I'm currently im
 Credit to Zelle for the graphics library: http://mcsp.wartburg.edu/zelle/python/graphics.py
 '''
 
+remove_skins() # take off the Halloween skins I made
+
 WIDTH,HEIGHT = 400,300 # window dimensions
 
 FRAMERATE = 20
@@ -195,7 +197,7 @@ def train(model0,model1):
     for n,dat in enumerate(zip(data[0],data[1],data[2],data[3])):
         pix,v,jump,y_pos = dat
         Q = decayed_reward(rewards[n:])
-        print('Q-values',Q)
+        #print('Q-values',Q)
         x = np.append(pix.ravel(),[v,y_pos])
         if jump == 0:
             batch0[0].append(x)
@@ -239,7 +241,7 @@ def decide(win,vy,y_pos):
 
 
     p = np.random.rand()
-    print('Q0, Q1',Q0,Q1)
+    #print('Q0, Q1',Q0,Q1)
 
     #choose action based on e-greedy policy (random chance to choose non-optimal option)
     if Q1>Q0 and p > e1:
@@ -267,14 +269,14 @@ def play():
 
         scores.append(0)
         while True: # duration of one player life
-            
+
 
             key = win.checkKey()
 
             vy = physics.velocity_y
             jump = 0
             key = decide(win,vy,player.y/HEIGHT) # use the NN's to decide to jump or not
-            print(key)
+            #print(key)
 
             barrier_spawn() # chance to spawn barriers
 
@@ -305,12 +307,14 @@ def play():
             rewards.append(3)
 
             scores[-1]+=1
-            print('scores',scores)
 
             #update(FRAMERATE)
 
+        print('score',scores[-1])
+
         # train the models after the player dies
         train(model0,model1)
+
 
 
 
