@@ -13,3 +13,9 @@ EL algorithms use principles of evolution (breeding, mutation, natural selection
     - though this requires a trained and pickled population file from `evolution.py`
     - you can open `EL Clip.mp4` to watch a recorded clip of an agent playing, instead
 - continuing to train agents on different versions of Flappy Golf (speed, window size, etc.) and different training parameters
+
+<br/>
+
+<img src="https://github.com/owalker10/independent-study/blob/master/Genetic%20Learning/EL%20Gif.gif" width="300" height="225" />
+
+Demonstration of the EL algorithm in action!
