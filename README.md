@@ -9,3 +9,9 @@ Repository of ongoing work in Comp Sci Independent Study class. Current objectiv
 - created script that using Q-learning to train a player to play Flappy Ball (`game_rl.py`). Works, but not very well.
 - started testing evolutionary learning algorithms as a substitute for Q-learning (everything located in `Genetic Learning` subdirectory). Already works much better.
 - Retextured the 800x600 versions of Flappy Golf in Halloween skins because I can.
+
+<br/>
+
+<img src="https://github.com/owalker10/independent-study/blob/master/Genetic%20Learning/EL%20Gif.gif" width="300" height="225" />
+
+Demonstration of the EL algorithm in action!
