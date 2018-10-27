@@ -1,6 +1,7 @@
 # Genetic Learning
 
 After having limited success with using a Q-learning algorithm, I decided to try evolutionary learning
+
 EL algorithms use principles of evolution (breeding, mutation, natural selection, fitness, etc.) to evolve an agent through generations
 
 ## Progress:
