@@ -2,7 +2,7 @@
 
 !*.git*
 !*.py
-!README
+!README.md
 
 !Genetic Learning/
 Genetic Learning/test.py
@@ -20,7 +20,10 @@ Genetic Learning/*
 !frames_per_life.png
 !wine_regression_results.png
 !Genetic Learning/EL Clip.mp4
+!Genetic Learning/EL Gif.gif
+!Genetic Learning/EL Gif Spooky.gif
 
 nn_batch_test.py
 test_data.py
 Genetic Learning/test.py
+Genetic Learning/test_avg.py

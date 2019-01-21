@@ -49,6 +49,7 @@ class Player():
         return child
 
     def move(self,dx,dy):
+        #print(self.y)
         self.x += dx
         self.y += dy
 
@@ -70,12 +71,12 @@ class Player():
             for x in range(other.x,other.x+other.width):
                 for y in [other.y,other.y+other.height]:
                     if dist([x,y],[self.x,self.y]) < self.r:
-                        return True; break
+                        return True
             # check left and right
             for y in range(other.y,other.y+other.height):
                 for x in [other.x,other.x+other.width]:
                     if dist([x,y],[self.x,self.y]) < self.r:
-                        return True; break
+                        return True
             return False
 
     # less than method used for sorting players by fitness

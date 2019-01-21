@@ -3,6 +3,7 @@ from graphics import *
 
 '''
 This script simualates the Flappy Ball game, with or without the graphics window
+This script is utilized as an import by either evolution scripts or view_players.py
 '''
 
 WIDTH,HEIGHT = 400,300
@@ -13,6 +14,9 @@ jump_speed = 15
 
 barrier_prob = 20 # barriers will spawn 1 in 20 frames
 barrier_width = 50
+spooky = False
+
+vis_text = None
 
 # create boundaries for equal horizontal rows going across the screen
 def rows(num_rows):
@@ -43,15 +47,22 @@ class Barrier():
             self.shape = shape
             self.shape.draw(win)
 
+            if y == 0 and spooky: self.ghost = Image(Point(x+width//2,height-50),'game_ghost_flipped.png')
+            elif spooky: self.ghost = Image(Point(x+width//2,y+50),'game_ghost.png')
+            if spooky: self.ghost.draw(win)
+
     def move(self,dx,dy):
         self.x += dx
         self.y += dy
 
         if self.graphics:
             self.shape.move(dx,dy)
+            if spooky:
+                self.ghost.move(dx,dy)
 
     def undraw(self):
         self.shape.undraw()
+        if spooky: self.ghost.undraw()
 
 
 class Physics():
@@ -78,8 +89,8 @@ def look(barriers,x,r):
         for n,row in enumerate(vision_rows):
             # if any pixel in the barrier is within the row and isn't behind the player:
             if (not (b.y > row[1] or b.y+b.height < row[0])) and b.x+b.width >= s:
-                x = max(b.x,s) - s
-                if x < vision[n]: vision[n] = x
+                dis = max(b.x,s) - s
+                if dis < vision[n]: vision[n] = dis
 
     return vision
 
@@ -112,7 +123,7 @@ def barrier_spawn(barriers,graphics):
     r = randint(1,barrier_prob)
     if r == 1:
         # if there are no barriers or the closest barrier is 3 barrier widths away:
-        if barriers == [] or (barriers != [] and barriers[-1].x < WIDTH - barrier_width*3):
+        if barriers == [] or (barriers != [] and barriers[-1].x < WIDTH - barrier_width*3.5):
             # find a random height between 25 and 60% of screen height
             height = randint(round(HEIGHT*.25),round(HEIGHT*.6))
             if randint(1,2) == 1: # 50/50 chance to be on top or bottom
@@ -122,11 +133,14 @@ def barrier_spawn(barriers,graphics):
 
             barriers.append(barrier)
 
-def undraw(player,f_text,barriers):
+def undraw(player,f_text,barriers,vis_text):
     player.undraw()
     f_text.undraw()
     for b in barriers:
         b.undraw()
+    if vis_text is not None:
+        for text in vis_text:
+            text.undraw()
 
 
 def play(player,graphics=False):
@@ -136,11 +150,13 @@ def play(player,graphics=False):
     f_text=None
     if graphics:
         player.draw(win)
-        f_text = Text(Point(50,50),str(fitness))
+        f_text = Text(Point(80,30),str(fitness));f_text.setOutline('white')
         f_text.draw(win)
 
 
     phys = Physics(speed,0,gravity,jump_speed)
+
+
 
     while True:
         fitness+=1
@@ -150,9 +166,14 @@ def play(player,graphics=False):
         if jump: phys.jump()
         tick(player,phys,barriers,graphics,fitness,f_text)
         if is_loss(player,barriers):
-            if graphics: undraw(player,f_text,barriers)
+            if graphics: undraw(player,f_text,barriers,vis_text)
             break
         barrier_spawn(barriers,graphics)
+
+        if vis_text is not None:
+            for v,text in zip(vision[:len(vision_rows)],vis_text):
+                text.setText(v)
+
 
         if graphics: update(framerate)
 

@@ -13,6 +13,8 @@ EL algorithms use principles of evolution (breeding, mutation, natural selection
     - though this requires a trained and pickled population file from `evolution.py`
     - you can open `EL Clip.mp4` to watch a recorded clip of an agent playing, instead
 - continuing to train agents on different versions of Flappy Golf (speed, window size, etc.) and different training parameters
+- added Halloween skins for maximum spooky fun!
+- created `viz_brain.py` to draw a trained player "brain" (neural network) to a window
 
 <br/>
 

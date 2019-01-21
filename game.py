@@ -27,11 +27,13 @@ FRAMERATE = 30
 
 gravity = 1 # pixels/frame^2
 speed = 6 # pixels/frame
+#speed = 9
 init_y_velocity = 1 # pixels/frame
 jump_speed = 20 # pixels/frame
 
 
-barrier_prob = FRAMERATE * 1 # barriers should spawn at an average of 1 every n seconds
+#barrier_prob = FRAMERATE * 1 # barriers should spawn at an average of 1 every n seconds
+barrier_prob = 10
 barrier_width = 75 # width of barriers in pixels
 
 
