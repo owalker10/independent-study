@@ -4,6 +4,11 @@ After having limited success with using a Q-learning algorithm, I decided to try
 
 EL algorithms use principles of evolution (breeding, mutation, natural selection, fitness, etc.) to evolve an agent through generations
 
+<br/>
+
+<img src="https://cdn-images-1.medium.com/max/1600/1*HP8JVxlJtOv14rGLJfXEzA.png" width="275" height="200" />
+
+
 ## Progress:
 - refitted `nn.py` to be used with EL (removed backpropagation, added mutation and crossover functions)
 - created `species.py`, which holds classes that create the species structure
@@ -19,5 +24,9 @@ EL algorithms use principles of evolution (breeding, mutation, natural selection
 <br/>
 
 <img src="https://github.com/owalker10/independent-study/blob/master/Genetic%20Learning/EL%20Gif.gif" width="300" height="225" />
+
+<br/>
+
+<img src="https://github.com/owalker10/independent-study/blob/master/Genetic%20Learning/EL%20Gif%20Spooky.gif" width="400" height="300" />
 
 Demonstration of the EL algorithm in action!
