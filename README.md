@@ -20,3 +20,10 @@ Repository of ongoing work in Comp Sci Independent Study class. Current objectiv
 <img src="https://github.com/owalker10/independent-study/blob/master/Genetic%20Learning/EL%20Gif%20Spooky.gif" width="400" height="300" />
 
 Demonstration of the EL algorithm in action!
+
+<br/><br/>
+
+<img src="https://github.com/owalker10/independent-study/blob/master/Genetic%20Learning/nn brain.png" width="600" height="400" />
+
+
+This is what a trained neural network looks like.
