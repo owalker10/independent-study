@@ -1,6 +1,6 @@
-# independent-study
+# reinforcement-learning
 
-Repository of ongoing work in Comp Sci Independent Study class. Current objective is to use reinforcement learning to train a program to play a small game.
+Repository of ongoing work in Comp Sci Independent Study class (2018-2019). Current objective is to use reinforcement learning to train a program to play a small game.
 
 ## Progress:
 - created "Flappy Ball" game, located at `game.py`
